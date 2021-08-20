@@ -47,6 +47,11 @@ resource "aws_route_table" "r" {
   }
 }
 
+resource "aws_route_table_association" "a" {
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.r.id
+}
+
 resource "aws_route" "r" {
   route_table_id            = aws_route_table.r.id
   destination_cidr_block    = "172.31.96.0/19"
